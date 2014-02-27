@@ -19,11 +19,11 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(rightWheelPort, GPIO.OUT)
 GPIO.setup(leftWheelPort,GPIO.OUT)
 
-#Turn on the the GPIO pin
+#Turn on the GPIO pin
 GPIO.output(rightWheelPort,GPIO.HIGH)
 GPIO.output(leftWheelPort,GPIO.HIGH)
 #wait for 4 seconds
 time.sleep(4)
-#Turn off yje GPIO pin
+#Turn off the GPIO pin
 GPIO.output(rightWheelPort,False)
 GPIO.output(leftWheelPort,False)
