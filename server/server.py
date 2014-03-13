@@ -3,7 +3,7 @@ import socket
 import CarController as carCon
 
 #global variables
-
+delayTime = 0.1 #the delay between the packages for making the car move
 
 #handeling the socket
 HOST = ''                 # Symbolic name meaning all available interfaces
@@ -24,7 +24,7 @@ while True:
        inData = None
        if switch == "forward":
             c.sendall('ok')     #returns "ok" if the command exists
-            carCon.forward()
+            carCon.forward(delayTime)
        elif switch == "back":
             c.sendall('ok')     #returns "ok" if the command exists
        elif switch == "right":
