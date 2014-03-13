@@ -4,7 +4,8 @@ __author__ = 'ludwig'
 import socket               # Import socket module
 
 s = socket.socket()         # Create a socket object
-host = socket.gethostname() # Get local machine name
+#host = socket.gethostname() # Get local machine name
+host = '192.168.1.66'
 port = 12345                # Reserve a port for your service.
 
 s.connect((host, port))

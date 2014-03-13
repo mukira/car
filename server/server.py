@@ -21,7 +21,7 @@ host = socket.gethostname() # Get local machine name
 port = 12345                # Reserve a port for your service.
 s.bind((host, port))        # Bind to the port
 
-
+print(host + port)
 
 def forward():
     #Turn on the GPIO pin
