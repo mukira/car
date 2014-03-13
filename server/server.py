@@ -3,7 +3,7 @@ import socket
 import CarController as carCon
 
 #global variables
-delayTime = 0.1 #the delay between the packages for making the car move
+delayTime = 1 #the delay between the packages for making the car move
 
 #handeling the socket
 HOST = ''                 # Symbolic name meaning all available interfaces
@@ -31,6 +31,9 @@ while True:
             c.sendall('ok')     #returns "ok" if the command exists
        elif switch == "left":
             c.sendall('ok')     #returns "ok" if the command exists
+       elif switch == "reset":
+          c.sendall("ok")
+          carCon.reset();
        else:
             c.sendall('Error')  #returns "Error" if the command DON'T exists
 
