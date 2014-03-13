@@ -12,9 +12,10 @@ print "Connected by", addr
 while True:
     data = conn.recv(1024)
     receivedData = repr(data)
-    if (receivedData != None):
+
+    if (len(receivedData) > 0):
         switch = receivedData
-        receivedData = None
+        receivedData = ""
         if switch == "forward":
             print"forward"
         elif switch == "back":
@@ -26,5 +27,4 @@ while True:
         else:
             conn.sendall("error")
 
-    conn.sendall(data)
 conn.close()
