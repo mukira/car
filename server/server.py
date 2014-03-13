@@ -10,21 +10,14 @@ conn, addr = s.accept()
 print "Connected by", addr
 
 while True:
-    data = conn.recv(1024)
-    receivedData = repr(data)
+   c, addr = s.accept()     # Establish connection with client.
+   print 'Got connection from', addr
+   inData =  c.recv(1024)
+   if(len(inData) > 0):
+	   switch = inData
+	   inData = None
+	   if switch == "forward":
+		   print switch
 
-    if (len(receivedData) > 0):
-        switch = receivedData
-        receivedData = ""
-        if switch == "forward":
-            print"forward"
-        elif switch == "back":
-            print"back"
-        elif switch == "left":
-            print"left"
-        elif switch == "right":
-            print"right"
-        else:
-            conn.sendall("error")
-
-conn.close()
+   c.sendall('Thank you for connecting')
+   c.close()                # Close the connection
