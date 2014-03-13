@@ -1,7 +1,5 @@
 __author__ = 'ludwig'
 
-
-
 import RPi.GPIO as GPIO
 import time
 
@@ -15,7 +13,7 @@ leftWheelPort = 18
 # Alternatively use GPIO.BOARD to use board pin numbering
 GPIO.setmode(GPIO.BCM)
 
-# Select if pins ar input or output
+# Select if pins are input or output
 GPIO.setup(rightWheelPort, GPIO.OUT)
 GPIO.setup(leftWheelPort,GPIO.OUT)
 
