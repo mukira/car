@@ -13,5 +13,6 @@ while True:
     data = conn.recv(1024)
     if (repr(data) != None):
         print "recived data;" , repr(data)
+        data = None
     conn.sendall(data)
 conn.close()
