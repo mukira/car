@@ -11,8 +11,7 @@ print "Connected by", addr
 
 while True:
     data = conn.recv(1024)
-    if (repr(data) != None):
+    if (repr(data) > 0):
         print "recived data;" , repr(data)
-        data = None
     conn.sendall(data)
 conn.close()
