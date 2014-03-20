@@ -9,7 +9,6 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s.connect((HOST, PORT))
 
-
 print datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "sending"
 s.sendall("forward")
 print "Received data; ", s.recv(1024)

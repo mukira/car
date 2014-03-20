@@ -1,10 +1,8 @@
 # Echo server program
 import socket
 import CarController as carCon
-
 #global variables
 delayTime = 1 #the delay between the packages for making the car move
-
 #handeling the socket
 HOST = ''                 # Symbolic name meaning all available interfaces
 PORT = 50007              # Arbitrary non-privileged port

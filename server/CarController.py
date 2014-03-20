@@ -15,11 +15,9 @@ rightWheelForward = 25
 leftWheelForward = 18
 # Alternatively use GPIO.BOARD to use board pin numbering
 GPIO.setmode(GPIO.BCM)
-
 # Select if pins are input or output
 GPIO.setup(rightWheelForward, GPIO.OUT)
 GPIO.setup(leftWheelForward,GPIO.OUT)
-
 
 def forward(delayTime):
    global forwardGlo
@@ -63,4 +61,4 @@ def runCar():
    while rightGlo != 0:
       print datetime.now().strftime('%Y-%m-%d %H:%M:%S')
    #when the loop stops turn off the pins
-   turnOffPins()
+      turnOffPins()

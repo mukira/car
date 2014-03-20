@@ -5,7 +5,7 @@ from sys import exit
 
 global loopVariable
 global timeDelay
-timeDelay = 1.0
+2timeDelay = 1.0
 loopVariable = timeDelay
 
     
