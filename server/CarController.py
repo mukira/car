@@ -31,16 +31,15 @@ def right():
     print "right!"
 def left():
     print "left!"
-def reset():
+def turnOffPins():
    GPIO.output(rightWheelForward,False)
    GPIO.output(leftWheelForward,False)
+def reset():
+   turnOffPins()
    forwardGlo = 0
    backGlo = 0
    leftGlo = 0
    rightGlo = 0
-def turnOffPins():
-   GPIO.output(rightWheelForward,False)
-   GPIO.output(leftWheelForward,False)
     
 def runCar():
    global forwardGlo
