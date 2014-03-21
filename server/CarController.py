@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 import time
 from datetime import datetime
 import threading
+from threading import Thread, Event
+
 #global variables
 forwardGlo = 0
 backGlo = 0
@@ -18,21 +20,15 @@ GPIO.setmode(GPIO.BCM)
 # Select if pins are input or output
 GPIO.setup(rightWheelForward, GPIO.OUT)
 GPIO.setup(leftWheelForward,GPIO.OUT)
-#threads
-mainThread = Thread(target=parent, args=())
 
-def runCar(delayTime,direction):
-    delayTimeGlo = delayTime
-    if direction = "forward":
-        print "going forward!!"
-    
 def forward():
-   global forwardGlo
-   global delayTimeGlo
-   forwardGlo += delayTime
-   runCarForward()
+    print("in method forward")
+    global forwardGlo
+    global delayTimeGlo
+    forwardGlo += delayTime
+    runCarForward()
 def back():
-    print "back!"
+    print("in method back")
 def right():
     print "right!"
 def left():
@@ -67,3 +63,13 @@ def runCarForward():
       print datetime.now().strftime('%Y-%m-%d %H:%M:%S')
    #when the loop stops turn off the pins
       turnOffPins()
+
+
+def runCar(delayTime,direction):
+    delayTimeGlo = delayTime
+    mainThread = Thread(target = forward , args=())
+    if not mainThread.empty():
+        if direction == "forward":
+            mainThread.start()
+        if direction == "back":
+            mainThread.start()
