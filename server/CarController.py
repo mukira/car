@@ -18,13 +18,19 @@ GPIO.setmode(GPIO.BCM)
 # Select if pins are input or output
 GPIO.setup(rightWheelForward, GPIO.OUT)
 GPIO.setup(leftWheelForward,GPIO.OUT)
+#threads
+mainThread = Thread(target=parent, args=())
 
-def forward(delayTime):
+def runCar(delayTime,direction):
+    delayTimeGlo = delayTime
+    if direction = "forward":
+        print "going forward!!"
+    
+def forward():
    global forwardGlo
    global delayTimeGlo
-   delayTimeGlo = delayTime
    forwardGlo += delayTime
-   runCar()
+   runCarForward()
 def back():
     print "back!"
 def right():
@@ -41,7 +47,7 @@ def reset():
    leftGlo = 0
    rightGlo = 0
     
-def runCar():
+def runCarForward():
    global forwardGlo
    global delayTimeGlo
    while forwardGlo > 0:

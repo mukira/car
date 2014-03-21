@@ -22,7 +22,7 @@ while True:
        inData = None
        if switch == "forward":
             c.sendall('ok')     #returns "ok" if the command exists
-            carCon.forward(delayTime)
+            carCon.runCar("forward",delayTime)
        elif switch == "back":
             c.sendall('ok')     #returns "ok" if the command exists
        elif switch == "right":
