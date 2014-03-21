@@ -5,16 +5,15 @@ import time
 from threading import Thread, Event
 #global variables
 threadLock = threading.Lock()
-threads = []
+threadsArray = []
 
 class myThread (threading.Thread):
-    def __init__(self, threadID, name, counter):
+    def __init__(self, threadID, name):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
-        self.counter = counter
     def run(self):
-        print "Starting " + self.name
+        print ("Starting thread; " + self.name)
         # Get lock to synchronize threads
         threadLock.acquire()
         if self.name == "forward":
@@ -40,21 +39,26 @@ def parent():
 
 
     # Create new threads
-    thread1 = myThread(1, "forward", 1)
-    thread2 = myThread(2, "back", 2)
+    thread1 = myThread(1, "forward")
+    thread2 = myThread(2, "back")
 
-    if not thread1.isAlive() or thread2.isAlive():
-        # Start new Threads
+    #print("thread1",thread1.isAlive())
+    #print("thread2",thread2.isAlive())
+    
+    if thread1.isAlive() == False and thread2.isAlive() == False:
+        # Start new Thread
         thread1.start()
-        # Add threads to thread list
-        threads.append(thread1)
-    if not thread1.isAlive() or thread2.isAlive():
+        # Add thread to thread list
+        threadsArray.append(thread1)
+    if thread1.isAlive() == False and thread2.isAlive() == False:
+        # Start new Thread
         thread2.start()
-        threads.append(thread2)
+        # Add thread to thread list
+        threadsArray.append(thread2)
 
     # Wait for all threads to complete
     while True:
-        for t in threads:
+        for t in threadsArray:
             t.join()
         print "Exiting Main Thread"
         break
