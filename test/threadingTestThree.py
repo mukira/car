@@ -3,10 +3,13 @@
 import threading
 import time
 from threading import Thread, Event
+from time import gmtime, strftime
+import datetime
 #global variables
 #threadLock = threading.Lock()
 threadsArray = []
-loopVariable = 1
+loopVariableForward = 1
+loopVariableBack = 1
 class myThread (threading.Thread):
     def __init__(self, threadID, name):
         threading.Thread.__init__(self)
@@ -25,21 +28,21 @@ class myThread (threading.Thread):
 
 
 def forward():
-    global loopVariable
-    while True:
-        print"Running method forward! ",loopVariable, "\n"
+    global loopVariableForward
+    while loopVariableForward < 20:
+        timeNow = datetime.datetime.now().strftime("%H:%M:%S.%f")
+        print timeNow, "Running method forward! ",loopVariableForward, "\n"
         time.sleep(1)
-        if loopVariable > 20:
-            break
+        loopVariableForward += 1
 def back():
-    global loopVariable
-    while True:
-        print"Running method back! ",loopVariable, "\n"
+    global loopVariableBack
+    time.sleep(1)
+    while loopVariableBack < 20:
+        timeNow = datetime.datetime.now().strftime("%H:%M:%S.%f")
+        print timeNow,"Running method back! ",loopVariableBack, "\n"
         time.sleep(1)
-        loopVariable += 1
-        if loopVariable > 20:
-            break
-        
+        loopVariableBack += 1
+
 def parent():
 
 
@@ -55,18 +58,6 @@ def parent():
     threadsArray.append(thread2)
 
     
-    '''
-    if thread1.isAlive() == False and thread2.isAlive() == False:
-        # Start new Thread
-        thread1.start()
-        # Add thread to thread list
-        threadsArray.append(thread1)
-    if thread1.isAlive() == False and thread2.isAlive() == False:
-        # Start new Thread
-        thread2.start()
-        # Add thread to thread list
-        threadsArray.append(thread2)
-    '''
     # Wait for all threads to complete
     while True:
         #print("loop in the parrent thread",threadsArray)
