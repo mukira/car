@@ -10,13 +10,14 @@ backGlo = 0
 leftGlo = 0
 rightGlo = 0
 delayTimeGlo = 0
+directionGlo = none
 #Ignores any warning
 GPIO.setwarnings(False)
 #setting the GPIO pins variables
 rightWheelForward = 25
 leftWheelForward = 18
 # Alternatively use GPIO.BOARD to use board pin numbering
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 # Select if pins are input or output
 GPIO.setup(rightWheelForward, GPIO.OUT)
 GPIO.setup(leftWheelForward,GPIO.OUT)
@@ -42,9 +43,9 @@ def forward():
 def back():
     print("in method back")
 def right():
-    print "right!"
+    print "in method right!"
 def left():
-    print "left!"
+    print "in method left!"
 def turnOffPins():
    GPIO.output(rightWheelForward,False)
    GPIO.output(leftWheelForward,False)
@@ -80,29 +81,43 @@ def runCarForward():
       turnOffPins()
 
 def mainThread():
-    #Define threads
-    thread1 = startChildThread(1, "forward")
-    thread2 = startChildThread(2, "back")
-    #start the thread(s)
-    thread1.start()
-    thread2.start()
-    #add them to the array to keep track of them
-    threadsArray.append(thread1)
-    threadsArray.append(thread2)
-    # Wait for all threads to complete
-    while True:
-        #print("loop in the parrent thread",threadsArray)
-        #time.sleep(1)
-        for t in threadsArray:
-            t.join()
-        print "Exiting Main Thread"
-        break
+   global directionGlo
+   #Define threads
+   thread1 = startChildThread(1, "forward")
+   thread2 = startChildThread(2, "back")
+   thread3 = startChildThread(2, "left")
+   thread4 = startChildThread(2, "right")
+
+   if directionGlo == "forward":
+      #start the thread
+      thread1.start()
+      #add them to the array to keep track of them
+      threadsArray.append(thread1)
+   elif directionGlo == "back":
+      thread2.start()
+      threadsArray.append(thread2)
+   elif directionGlo == "left":
+      thread3.start()
+      threadsArray.append(thread3)
+   elif directionGlo == "right":
+      thread4.start()
+      threadsArray.append(thread4)
+
+   # Wait for all threads to complete
+   while True:
+      #print("loop in the parrent thread",threadsArray)
+      #time.sleep(1)
+      for t in threadsArray:
+         t.join()
+         print "Exiting Main Thread"
+         break
     
 
 def runCar(delayTime,direction):
-    delayTimeGlo = delayTime
-    mainThread = Thread(target = forward , args=())
-    mainThread.start()
+   directionGlo = direction
+   delayTimeGlo = delayTime
+   mainThread = Thread(target = forward , args=())
+   mainThread.start()
     '''
     if not mainThread.empty():
         if direction == "forward":
