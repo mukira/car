@@ -123,7 +123,7 @@ def mainThread():
         elif not threadsArray > 1:
             thread2.start()
             threadsArray.append(thread2)
-            runCarBackwards():
+            runCarBackwards()
     elif directionGlo == "left":
         if thread3.isAlive():
             left()
