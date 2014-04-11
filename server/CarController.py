@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from datetime import datetime,gmtime, strftime
+from datetime import datetime
 import threading
 from threading import Thread, Event
 
@@ -27,7 +27,7 @@ def forward():
     print("in method forward")
     global forwardGlo
     global delayTimeGlo
-    forwardGlo += delayTime
+    forwardGlo += delayTimeGlo
     runCarForward()
 def back():
     print("in method back")
@@ -74,9 +74,9 @@ class startChildThread (threading.Thread):
     def run(self):
        if self.name == "forward":
             runCarForward()
-       #elif self.name == "back":
-       #     back()
-
+       elif self.name == "back":
+            #back()
+          
 
        
 def mainThread():
