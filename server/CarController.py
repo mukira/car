@@ -71,7 +71,6 @@ def runCarForward():
         time.sleep(delayTimeGlo)
         forwardGlo -= delayTimeGlo
     turnOffPins()
-    break
 def runCarBackwards():
     global delayTimeGlo
     global backGlo
@@ -79,7 +78,6 @@ def runCarBackwards():
         time.sleep(delayTimeGlo)
         backGlo -= delayTimeGlo
     turnOffPins() 
-    break
 def runCarLeft():
     global delayTimeGlo
     global leftGlo
@@ -87,7 +85,6 @@ def runCarLeft():
         time.sleep(delayTimeGlo)
         leftGlo -= delayTimeGlo
     turnOffPins()
-    break
 def runCarRight():
     global delayTimeGlo
     global rightGlo
@@ -95,7 +92,6 @@ def runCarRight():
         time.sleep(delayTimeGlo)
         rightGlo -= delayTimeGlo
     turnOffPins()
-    break
 def mainThread():
     global directionGlo
     #Define threads
@@ -103,8 +99,7 @@ def mainThread():
     thread2 = startChildThread(2, "back")
     thread3 = startChildThread(2, "left")
     thread4 = startChildThread(2, "right")
-    if threadsArray > 1:
-        break
+
    
     if directionGlo == "forward":
         if thread1.isAlive():
@@ -144,6 +139,8 @@ def mainThread():
         #time.sleep(1)
         for t in threadsArray:
             t.join()
+            if threadsArray > 1:
+            break
         print "Exiting Main Thread"
         break
     
