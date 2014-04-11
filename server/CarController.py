@@ -52,92 +52,92 @@ def right():
     rightGlo += delayTimeGlo
 
 def turnOffPins():
-   GPIO.output(rightWheelForward,False)
-   GPIO.output(leftWheelForward,False)
+    GPIO.output(rightWheelForward,False)
+    GPIO.output(leftWheelForward,False)
 def reset():
-   turnOffPins()
-   forwardGlo = 0
-   backGlo = 0
-   leftGlo = 0
-   rightGlo = 0
+    turnOffPins()
+    forwardGlo = 0
+    backGlo = 0
+    leftGlo = 0
+    rightGlo = 0
     
 def runCarForward():
-   global delayTimeGlo
-   global forwardGlo
-   #Turn on the GPIO pin
-   GPIO.output(rightWheelForward,GPIO.HIGH)
-   GPIO.output(leftWheelForward,GPIO.HIGH)
-   while forwardGlo > 0:
-      time.sleep(delayTimeGlo)
-      forwardGlo -= delayTimeGlo
+    global delayTimeGlo
+    global forwardGlo
+    #Turn on the GPIO pin
+    GPIO.output(rightWheelForward,GPIO.HIGH)
+    GPIO.output(leftWheelForward,GPIO.HIGH)
+    while forwardGlo > 0:
+        time.sleep(delayTimeGlo)
+        forwardGlo -= delayTimeGlo
     turnOffPins()
     break
 def runCarBackwards():
-   global delayTimeGlo
-   global backGlo
-   while backGlo > 0:
-       time.sleep(delayTimeGlo)
-       backGlo -= delayTimeGlo
+    global delayTimeGlo
+    global backGlo
+    while backGlo > 0:
+        time.sleep(delayTimeGlo)
+        backGlo -= delayTimeGlo
     turnOffPins() 
     break
 def runCarLeft():
-   global delayTimeGlo
-   global leftGlo
-   while leftGlo > 0:
-       time.sleep(delayTimeGlo)
-       leftGlo -= delayTimeGlo
+    global delayTimeGlo
+    global leftGlo
+    while leftGlo > 0:
+        time.sleep(delayTimeGlo)
+        leftGlo -= delayTimeGlo
     turnOffPins()
     break
 def runCarRight():
-   global delayTimeGlo
-   global rightGlo
-   while rightGlo > 0:
-       time.sleep(delayTimeGlo)
-       rightGlo -= delayTimeGlo
+    global delayTimeGlo
+    global rightGlo
+    while rightGlo > 0:
+        time.sleep(delayTimeGlo)
+        rightGlo -= delayTimeGlo
     turnOffPins()
     break
 def mainThread():
-   global directionGlo
-   #Define threads
-   thread1 = startChildThread(1, "forward")
-   thread2 = startChildThread(2, "back")
-   thread3 = startChildThread(2, "left")
-   thread4 = startChildThread(2, "right")
-   if threadsArray > 1:
-       break
+    global directionGlo
+    #Define threads
+    thread1 = startChildThread(1, "forward")
+    thread2 = startChildThread(2, "back")
+    thread3 = startChildThread(2, "left")
+    thread4 = startChildThread(2, "right")
+    if threadsArray > 1:
+        break
    
-   if directionGlo == "forward":
-       if thread1.isAlive():
-           #run the method since the thread that runs the car is started
-           forward()
-       elif not threadsArray > 1:
+    if directionGlo == "forward":
+        if thread1.isAlive():
+            #run the method since the thread that runs the car is started
+            forward()
+        elif not threadsArray > 1:
             #start the thread
             thread1.start()
             #add them to the array to keep track of them
             threadsArray.append(thread1)
             #start the method that runs the car
             runCarForward()
-   elif directionGlo == "back":
-       if thread2.isAlive():
-           back()
-       elif not threadsArray > 1:
+    elif directionGlo == "back":
+        if thread2.isAlive():
+            back()
+        elif not threadsArray > 1:
             thread2.start()
             threadsArray.append(thread2)
             runCarBackwards():
-   elif directionGlo == "left":
-       if thread3.isAlive():
-           left()
-       elif not threadsArray > 1:
+    elif directionGlo == "left":
+        if thread3.isAlive():
+            left()
+        elif not threadsArray > 1:
             thread3.start()
             threadsArray.append(thread3)
             runCarLeft()
-   elif directionGlo == "right":
-       if thread4.isAlive():
-           right()
-       elif not threadsArray > 1:
-           thread4.start()
-           threadsArray.append(thread4)
-           runCarRight()
+    elif directionGlo == "right":
+        if thread4.isAlive():
+            right()
+        elif not threadsArray > 1:
+            thread4.start()
+            threadsArray.append(thread4)
+            runCarRight()
    # Wait for all threads to complete
     while True:
         #print("loop in the parrent thread",threadsArray)
@@ -149,10 +149,10 @@ def mainThread():
     
 
 def runCar(delayTime,direction):
-   directionGlo = direction
-   delayTimeGlo = delayTime
-   mainThread = Thread(target = forward , args=())
-   mainThread.start()
+    directionGlo = direction
+    delayTimeGlo = delayTime
+    mainThread = Thread(target = forward , args=())
+    mainThread.start()
     '''
     if not mainThread.empty():
         if direction == "forward":
