@@ -77,8 +77,6 @@ class startChildThread (threading.Thread):
        elif self.name == "back":
             #back()
           
-
-       
 def mainThread():
     #Define threads
     thread1 = startChildThread(1, "forward")
