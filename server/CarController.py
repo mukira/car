@@ -140,7 +140,7 @@ def mainThread():
         for t in threadsArray:
             t.join()
             if threadsArray > 1:
-            break
+                break
         print "Exiting Main Thread"
         break
     
