@@ -10,14 +10,14 @@ import datetime
 threadsArray = []
 loopVariableForward = 1
 loopVariableBack = 1
-class myThread (threading.Thread):
+class startChildThread (threading.Thread):
     def __init__(self, threadID, name):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
     def run(self):
         print ("Starting thread; " + self.name)
-        # Get lock to synchronize threads
+        #Get lock to synchronize threads
         #threadLock.acquire() #prevents any new threads from spawning
         if self.name == "forward":
             forward()
@@ -25,7 +25,6 @@ class myThread (threading.Thread):
             back()
         #print_time(self.name, self.counter, 3)
         #threadLock.release() # Free lock to release next thread
-
 
 def forward():
     global loopVariableForward
@@ -47,8 +46,8 @@ def parent():
 
 
     # Create new threads
-    thread1 = myThread(1, "forward")
-    thread2 = myThread(2, "back")
+    thread1 = startChildThread(1, "forward")
+    thread2 = startChildThread(2, "back")
 
     #print("thread1",thread1.isAlive())
     #print("thread2",thread2.isAlive())
