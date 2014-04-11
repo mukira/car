@@ -17,7 +17,7 @@ GPIO.setwarnings(False)
 rightWheelForward = 25
 leftWheelForward = 18
 # Alternatively use GPIO.BOARD to use board pin numbering
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 # Select if pins are input or output
 GPIO.setup(rightWheelForward, GPIO.OUT)
 GPIO.setup(leftWheelForward,GPIO.OUT)
