@@ -31,7 +31,7 @@ class startChildThread (threading.Thread):
        if self.name == "forward":
             runCarForward()
        elif self.name == "back":
-            #back()
+            runCarBackwards()
 
 def forward():
     print("in method forward")
@@ -54,7 +54,10 @@ def reset():
    backGlo = 0
    leftGlo = 0
    rightGlo = 0
-    
+   
+def runCarBackwards():
+   global delayTimeGlo
+
 def runCarForward():
    global forwardGlo
    global delayTimeGlo
