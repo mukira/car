@@ -83,7 +83,12 @@ def mainThread():
     #Define threads
     thread1 = startChildThread(1, "forward")
     thread2 = startChildThread(2, "back")
-
+    #start the thread(s)
+    thread1.start()
+    thread2.start()
+    #add them to the array to keep track of them
+    threadsArray.append(thread1)
+    threadsArray.append(thread2)
     # Wait for all threads to complete
     while True:
         #print("loop in the parrent thread",threadsArray)
@@ -97,8 +102,10 @@ def mainThread():
 def runCar(delayTime,direction):
     delayTimeGlo = delayTime
     mainThread = Thread(target = forward , args=())
+    mainThread.start()
+    '''
     if not mainThread.empty():
         if direction == "forward":
             mainThread.start()
         if direction == "back":
-            mainThread.start()
+            mainThread.start()'''
