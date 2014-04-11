@@ -39,7 +39,6 @@ def forward():
     global forwardGlo
     global delayTimeGlo
     forwardGlo += delayTimeGlo
-    runCarForward()
 def back():
     print("in method back")
 def right():
@@ -94,31 +93,35 @@ def mainThread():
    if directionGlo == "forward":
        if thread1.isAlive():
            #run the method since the thread that runs the car is started
-           runCarForward():
+           forward():
         else:
             #start the thread
             thread1.start()
             #add them to the array to keep track of them
             threadsArray.append(thread1)
+            #start the method that runs the car
+            runCarForward():
    elif directionGlo == "back":
        if thread2.isAlive():
-           runCarBackwards():
+           back():
         else:
             thread2.start()
             threadsArray.append(thread2)
+            runCarBackwards():
    elif directionGlo == "left":
        if thread3.isAlive():
-           runCarForward():
+           left():
         else:
             thread3.start()
             threadsArray.append(thread3)
+            runCarLeft():
    elif directionGlo == "right":
        if thread4.isAlive():
-           runCarForward():
+           right():
        else:
            thread4.start()
            threadsArray.append(thread4)
-
+           runCarRight():
    # Wait for all threads to complete
    while True:
       #print("loop in the parrent thread",threadsArray)
