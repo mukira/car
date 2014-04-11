@@ -10,7 +10,7 @@ backGlo = 0
 leftGlo = 0
 rightGlo = 0
 delayTimeGlo = 0
-directionGlo = none
+directionGlo = None
 #Ignores any warning
 GPIO.setwarnings(False)
 #setting the GPIO pins variables
