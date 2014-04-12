@@ -14,8 +14,13 @@ directionGlo = None
 #Ignores any warning
 GPIO.setwarnings(False)
 #setting the GPIO pins variables
-rightWheelForward = 25
-leftWheelForward = 18
+turnForward = 11
+turnLeftOne = 7
+turnLeftTwo = 8
+turnRightOne = 9
+turnRightTwo = 10
+turnHeadlightFront = 24
+turnHeadlightBack = 25
 # Alternatively use GPIO.BOARD to use board pin numbering
 GPIO.setmode(GPIO.BCM)
 # Select if pins are input or output
@@ -47,13 +52,19 @@ def left():
     global delayTimeGlo
     leftGlo += delayTimeGlo
 def right():
-    global forwardGlo
+    global rightGlo
     global delayTimeGlo
     rightGlo += delayTimeGlo
 
 def turnOffPins():
-    GPIO.output(rightWheelForward,False)
-    GPIO.output(leftWheelForward,False)
+    GPIO.output(turnForward,False)
+    GPIO.output(turnLeftOne,False)
+    GPIO.output(turnLeftTwo,False)
+    GPIO.output(turnRightOne,False)
+    GPIO.output(turnRightTwo,False)
+    GPIO.output(turnHeadlightFront,False)
+    GPIO.output(turnHeadlightBack,False)
+
 def reset():
     turnOffPins()
     forwardGlo = 0
@@ -65,8 +76,7 @@ def runCarForward():
     global delayTimeGlo
     global forwardGlo
     #Turn on the GPIO pin
-    GPIO.output(rightWheelForward,GPIO.HIGH)
-    GPIO.output(leftWheelForward,GPIO.HIGH)
+    GPIO.output(turnForward,GPIO.HIGH)
     while forwardGlo > 0:
         time.sleep(delayTimeGlo)
         forwardGlo -= delayTimeGlo
@@ -74,6 +84,11 @@ def runCarForward():
 def runCarBackwards():
     global delayTimeGlo
     global backGlo
+    GPIO.output(turnRightOne,GPIO.HIGH)
+    GPIO.output(turnRightTwo,GPIO.HIGH)
+    GPIO.output(turnLeftOne,GPIO.HIGH)
+    GPIO.output(turnLeftTwo,GPIO.HIGH)
+    GPIO.output(turnForward,GPIO.HIGH)
     while backGlo > 0:
         time.sleep(delayTimeGlo)
         backGlo -= delayTimeGlo
@@ -81,6 +96,9 @@ def runCarBackwards():
 def runCarLeft():
     global delayTimeGlo
     global leftGlo
+    GPIO.output(turnLeftOne,GPIO.HIGH)
+    GPIO.output(turnLeftTwo,GPIO.HIGH)
+    GPIO.output(turnForward,GPIO.HIGH)
     while leftGlo > 0:
         time.sleep(delayTimeGlo)
         leftGlo -= delayTimeGlo
@@ -88,6 +106,9 @@ def runCarLeft():
 def runCarRight():
     global delayTimeGlo
     global rightGlo
+    GPIO.output(turnRightOne,GPIO.HIGH)
+    GPIO.output(turnRightTwo,GPIO.HIGH)
+    GPIO.output(turnForward,GPIO.HIGH)
     while rightGlo > 0:
         time.sleep(delayTimeGlo)
         rightGlo -= delayTimeGlo
