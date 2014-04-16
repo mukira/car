@@ -70,6 +70,7 @@ void handler(void * paramsd) {
             cmd[i] = toupper(line[i]);
         /* Did client ask for time? */
         if (strncmp(cmd, time_msg1, 6) == 0 || strncmp(cmd, time_msg2, 6) == 0) {
+            printf("socket status; %d\n",socket);
             printf("Received /TIME from %s:%d\n", inet_ntoa(cliAddr.sin_addr), ntohs(cliAddr.sin_port));
             time(&currtime);                  /* get current time */
             strcpy(reply, ctime(&currtime));  /* copy into string */
