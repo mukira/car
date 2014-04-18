@@ -8,3 +8,5 @@
 client/client
 
 serverC/socket
+
+*.py~
