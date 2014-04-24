@@ -1,4 +1,5 @@
 import socket, hashlib, base64, threading
+import CarController as carCon
 
 class PyWSock:
     MAGIC = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
@@ -83,7 +84,8 @@ class PyWSock:
     def handle_client (self, client, addr):
         self.handshake(client)
         try:
-            while 1:            
+            while 1:
+                delayTime = 1 #the delay between the packages for making the car move
                 data = self.recv_data(client)
                 print("received [%s]" % (data,))
                 self.broadcast_resp(data)
@@ -92,18 +94,23 @@ class PyWSock:
                 if switch == "forward":
                  print("Forward command received")
                  #code here so motors go forward
+                 carCon.runCar(delayTime,"forward")
                 elif switch == "back":
                  print("Backward command received")
                  #code here so motors go backward
+                 carCon.runCar(delayTime,"back")
                 elif switch == "right":
                  print("Right command received")
                  #code here so motors go right
+                 carCon.runCar(delayTime,"right")
                 elif switch == "left":
                  print("Left command received")
                  #code here so motors go  left
+                 carCon.runCar(delayTime,"left")
                 elif switch == "stop":
                  print("stop command received")
                  #code here so motors go stop
+                 carCon.runCar(delayTime,"stop")
                 else:
                  client.send('Error')  #returns "Error" if the command DON'T exists
 
