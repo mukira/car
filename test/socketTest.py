@@ -19,6 +19,7 @@ while True:
    if(len(inData) > 0):
        switch = inData
        inData = None
+       print("recived; " + switch)
        if switch == "forward":
             c.sendall('ok')     #returns "ok" if the command exists
        elif switch == "back":
