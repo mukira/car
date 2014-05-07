@@ -10,3 +10,5 @@ client/client
 serverC/socket
 
 *.py~
+
+*.pyc
