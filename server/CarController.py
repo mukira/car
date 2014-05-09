@@ -179,5 +179,5 @@ def runCar(delayTime,direction):
    print("starting car controller")
    directionGlo = direction
    delayTimeGlo = delayTime
-   mainThread = Thread(target = forward , args=())
+   mainThread = Thread(target = mainThread , args=())
    mainThread.start()
