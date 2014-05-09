@@ -184,5 +184,9 @@ def runCar(delayTime,direction):
    
    directionGlo = direction
    delayTimeGlo = delayTime
+   print("direction; " + directionGlo)
+
+   print("delayTime; " , delayTimeGlo)
+
    mainThreadV = Thread(target=mainThread , args=())
    mainThreadV.start()
