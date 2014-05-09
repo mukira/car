@@ -131,7 +131,7 @@ def mainThread():
         if thread1.isAlive():
             #run the method since the thread that runs the car is started
             forward()
-        elif not threadsArray > 1:
+        else:
             #start the thread
             thread1.start()
             #add them to the array to keep track of them
