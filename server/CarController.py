@@ -22,7 +22,8 @@ turnRightTwo = 21
 turnHeadlightFront = 0
 turnHeadlightBack = 0
 # Alternatively use GPIO.BOARD to use board pin numbering
-GPIO.setmode(GPIO.BCM)
+#GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 # Select if pins are input or output
 GPIO.setup(turnForward, GPIO.OUT)
 GPIO.setup(turnLeftOne, GPIO.OUT)
