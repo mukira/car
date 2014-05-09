@@ -175,13 +175,8 @@ def mainThread():
     
 
 def runCar(delayTime,direction):
-    directionGlo = direction
-    delayTimeGlo = delayTime
-    mainThread = Thread(target = forward , args=())
-    mainThread.start()
-    '''
-    if not mainThread.empty():
-        if direction == "forward":
-            mainThread.start()
-        if direction == "back":
-            mainThread.start()'''
+   print("starting car controller")
+   directionGlo = direction
+   delayTimeGlo = delayTime
+   mainThread = Thread(target = forward , args=())
+   mainThread.start()
