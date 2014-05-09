@@ -71,11 +71,12 @@ def turnOffPins():
     GPIO.output(turnHeadlightBack,False)
 
 def reset():
-    turnOffPins()
-    forwardGlo = 0
-    backGlo = 0
-    leftGlo = 0
-    rightGlo = 0
+   print("resetting pins")
+   turnOffPins()
+   forwardGlo = 0
+   backGlo = 0
+   leftGlo = 0
+   rightGlo = 0
     
 def runCarForward():
     global delayTimeGlo
