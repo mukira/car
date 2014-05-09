@@ -142,6 +142,8 @@ def mainThread():
           thread1.start()
           #add them to the array to keep track of them
           threadsArray.append(thread1)
+          #add the time to make it run
+          forward()
           #start the method that runs the car
           runCarForward()
     elif directionGlo == "back":
