@@ -124,8 +124,8 @@ def mainThread():
     #Define threads
     thread1 = startChildThread(1, "forward")
     thread2 = startChildThread(2, "back")
-    thread3 = startChildThread(2, "left")
-    thread4 = startChildThread(2, "right")
+    thread3 = startChildThread(3, "left")
+    thread4 = startChildThread(4, "right")
     print("mainthread direction;",directionGlo )
    
     if directionGlo == "forward":
@@ -179,5 +179,5 @@ def runCar(delayTime,direction):
    print("starting car controller")
    directionGlo = direction
    delayTimeGlo = delayTime
-   mainThread = Thread(target = mainThread , args=())
-   mainThread.start()
+   mainThreadV = Thread(target=mainThread , args=())
+   mainThreadV.start()

@@ -42,7 +42,7 @@ def back():
         time.sleep(1)
         loopVariableBack += 1
 
-def parent():
+def mainThread():
 
 
     # Create new threads
@@ -67,7 +67,7 @@ def parent():
         break
 
 if __name__ == "__main__":
-    par = Thread(target=parent, args=())
+    par = Thread(target=mainThread, args=())
     print("starting parent thread")
     par.start()
     print("parent thread started")
