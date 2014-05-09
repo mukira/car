@@ -79,10 +79,12 @@ def reset():
    rightGlo = 0
     
 def runCarForward():
+    print("starting runCarForward")
     global delayTimeGlo
     global forwardGlo
     #Turn on the GPIO pin
     GPIO.output(turnForward,GPIO.HIGH)
+    print("fowardGlo; " + forwardGlo)
     while forwardGlo > 0:
         time.sleep(delayTimeGlo)
         forwardGlo -= delayTimeGlo
