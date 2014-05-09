@@ -3,7 +3,7 @@ import socket
 import time
 from datetime import datetime
 
-HOST = "localhost"    # The remote host
+HOST = "raspberrypi.lan"    # The remote host
 PORT = 50007              # The same port as used by the server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

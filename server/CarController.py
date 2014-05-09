@@ -14,13 +14,13 @@ directionGlo = None
 #Ignores any warning
 GPIO.setwarnings(False)
 #setting the GPIO pins variables
-turnForward = 11
-turnLeftOne = 7
-turnLeftTwo = 8
-turnRightOne = 9
-turnRightTwo = 10
-turnHeadlightFront = 24
-turnHeadlightBack = 25
+turnForward = 23
+turnLeftOne = 24
+turnLeftTwo = 24
+turnRightOne = 19
+turnRightTwo = 21
+turnHeadlightFront = 0
+turnHeadlightBack = 0
 # Alternatively use GPIO.BOARD to use board pin numbering
 GPIO.setmode(GPIO.BCM)
 # Select if pins are input or output
