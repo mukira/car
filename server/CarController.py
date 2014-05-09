@@ -125,18 +125,21 @@ def mainThread():
     thread2 = startChildThread(2, "back")
     thread3 = startChildThread(2, "left")
     thread4 = startChildThread(2, "right")
-
+    print("mainthread direction;",directionGlo )
    
     if directionGlo == "forward":
-        if thread1.isAlive():
-            #run the method since the thread that runs the car is started
-            forward()
-        else:
-            #start the thread
-            thread1.start()
-            #add them to the array to keep track of them
-            threadsArray.append(thread1)
-            #start the method that runs the car
+       print("direction forward")
+       if thread1.isAlive():
+          print("thread is alive, adding time")
+          #run the method since the thread that runs the car is started
+          forward()
+       else:
+          print("starting thread forward")
+          #start the thread
+          thread1.start()
+          #add them to the array to keep track of them
+          threadsArray.append(thread1)
+          #start the method that runs the car
             runCarForward()
     elif directionGlo == "back":
         if thread2.isAlive():
