@@ -24,8 +24,13 @@ turnHeadlightBack = 25
 # Alternatively use GPIO.BOARD to use board pin numbering
 GPIO.setmode(GPIO.BCM)
 # Select if pins are input or output
-GPIO.setup(rightWheelForward, GPIO.OUT)
-GPIO.setup(leftWheelForward,GPIO.OUT)
+GPIO.setup(turnForward, GPIO.OUT)
+GPIO.setup(turnLeftOne, GPIO.OUT)
+GPIO.setup(turnLeftTwo, GPIO.OUT)
+GPIO.setup(turnRightOne, GPIO.OUT)
+GPIO.setup(turnRightTwo, GPIO.OUT)
+GPIO.setup(turnHeadlightFront, GPIO.OUT)
+GPIO.setup(turnHeadlightBack, GPIO.OUT)
 #keep track of all the threads
 threadsArray = []
 class startChildThread (threading.Thread):
