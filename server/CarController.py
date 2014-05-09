@@ -140,7 +140,7 @@ def mainThread():
           #add them to the array to keep track of them
           threadsArray.append(thread1)
           #start the method that runs the car
-            runCarForward()
+          runCarForward()
     elif directionGlo == "back":
         if thread2.isAlive():
             back()
