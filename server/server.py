@@ -15,7 +15,7 @@ print "Connected by", addr
 
 while True:
    c, addr = s.accept()     # Establish connection with client.
-   print 'Got connection from', addr
+   #print 'Got connection from', addr
    inData =  c.recv(1024)
    if(len(inData) > 0):
        switch = inData

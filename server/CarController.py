@@ -133,6 +133,7 @@ def runCarRight():
     turnOffPins()
 def mainThread():
     global directionGlo
+    global threadsArray
     #Define threads
     thread1 = startChildThread(1, "forward")
     thread2 = startChildThread(2, "back")
@@ -146,7 +147,7 @@ def mainThread():
           #print("thread is alive, adding time")
           #run the method since the thread that runs the car is started
           forward()
-       elif not len(threadsArray) > 1:
+       elif not len(threadsArray) > 0:
           #print("starting thread forward")
           #adding the time to make it run
           forward()
@@ -160,7 +161,7 @@ def mainThread():
     elif directionGlo == "back":
         if thread2.isAlive():
             back()
-        elif not len(threadsArray) > 1:
+        elif not len(threadsArray) > 0:
             back()
             thread2.start()
             threadsArray.append(thread2)
@@ -168,7 +169,7 @@ def mainThread():
     elif directionGlo == "left":
         if thread3.isAlive():
             left()
-        elif not len(threadsArray) > 1:
+        elif not len(threadsArray) > 0:
             left()
             thread3.start()
             threadsArray.append(thread3)
@@ -176,8 +177,8 @@ def mainThread():
     elif directionGlo == "right":
         if thread4.isAlive():
             right()
-        elif not len(threadsArray) > 1:
-            print("starting thread right")
+        elif not len(threadsArray) > 0:
+            #print("starting thread right")
             right()
             thread4.start()
             threadsArray.append(thread4)
@@ -186,11 +187,11 @@ def mainThread():
     while True:
         for t in threadsArray:
             t.join()
-            if threadsArray > 1:
+            if threadsArray > 0:
                 break
-        print "Exiting Main Thread"
+        #print "Exiting Main Thread"
         break
-    
+        threadsArray = []
 
 def runCar(delayTime,direction):
    #print("starting car controller")
