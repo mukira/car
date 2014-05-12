@@ -140,7 +140,7 @@ def mainThread():
           print("thread is alive, adding time")
           #run the method since the thread that runs the car is started
           forward()
-        elif not threadsArray > 1:
+       elif not threadsArray > 1:
           print("starting thread forward")
           #adding the time to make it run
           forward()
