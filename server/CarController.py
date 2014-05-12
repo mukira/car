@@ -161,7 +161,7 @@ def mainThread():
     elif directionGlo == "back":
         if thread2.isAlive():
             back()
-        elif not len(threadsArray) > 0:
+        elif not len(threadsArray) > 1:
             back()
             thread2.start()
             threadsArray.append(thread2)
@@ -169,7 +169,7 @@ def mainThread():
     elif directionGlo == "left":
         if thread3.isAlive():
             left()
-        elif not len(threadsArray) > 0:
+        elif not len(threadsArray) > 1:
             left()
             thread3.start()
             threadsArray.append(thread3)
@@ -177,7 +177,7 @@ def mainThread():
     elif directionGlo == "right":
         if thread4.isAlive():
             right()
-        elif not len(threadsArray) > 0:
+        elif not len(threadsArray) > 1:
             #print("starting thread right")
             right()
             thread4.start()
@@ -187,8 +187,9 @@ def mainThread():
     while True:
         for t in threadsArray:
             t.join()
-            if threadsArray > 0:
+            if threadsArray > 1:
                 break
+                threadsArray = []
         #print "Exiting Main Thread"
         break
         threadsArray = []
