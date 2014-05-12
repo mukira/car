@@ -39,7 +39,7 @@ class startChildThread (threading.Thread):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.name = name
-    def run(self):
+    #def run(self):
         #if self.name == "forward":
             #add the time to make it run
             #forward()
