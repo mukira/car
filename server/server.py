@@ -28,9 +28,11 @@ while True:
             carCon.runCar(delayTime,"back")
        elif switch == "right":
             c.sendall('ok')     #returns "ok" if the command exists
+            carCon.runCar(delayTime,"right")
        elif switch == "left":
             c.sendall('ok')     #returns "ok" if the command exists
-       elif switch == "reset":
+            carCon.runCar(delayTime,"left")
+        elif switch == "reset":
           c.sendall("ok")
           carCon.reset();
        else:
