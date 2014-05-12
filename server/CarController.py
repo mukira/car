@@ -70,8 +70,8 @@ def turnOffPins():
     GPIO.output(turnLeftTwo,False)
     GPIO.output(turnRightOne,False)
     GPIO.output(turnRightTwo,False)
-    GPIO.output(turnHeadlightFront,False)
-    GPIO.output(turnHeadlightBack,False)
+    #GPIO.output(turnHeadlightFront,False)
+    #GPIO.output(turnHeadlightBack,False)
 
 def reset():
    print("resetting pins")
@@ -176,8 +176,6 @@ def mainThread():
             runCarRight()
    # Wait for all threads to complete
     while True:
-        #print("loop in the parrent thread",threadsArray)
-        #time.sleep(1)
         for t in threadsArray:
             t.join()
             if threadsArray > 1:
