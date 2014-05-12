@@ -140,7 +140,7 @@ def mainThread():
           print("thread is alive, adding time")
           #run the method since the thread that runs the car is started
           forward()
-       elif len(threadsArray) > 1:
+       elif not len(threadsArray) > 1:
           print("starting thread forward")
           #adding the time to make it run
           forward()
@@ -154,7 +154,7 @@ def mainThread():
     elif directionGlo == "back":
         if thread2.isAlive():
             back()
-        elif len(threadsArray) > 1:
+        elif not len(threadsArray) > 1:
             back()
             thread2.start()
             threadsArray.append(thread2)
@@ -162,7 +162,7 @@ def mainThread():
     elif directionGlo == "left":
         if thread3.isAlive():
             left()
-        elif len(threadsArray) > 1:
+        elif not len(threadsArray) > 1:
             left()
             thread3.start()
             threadsArray.append(thread3)
@@ -170,7 +170,7 @@ def mainThread():
     elif directionGlo == "right":
         if thread4.isAlive():
             right()
-        elif len(threadsArray) > 1:
+        elif not len(threadsArray) > 1:
             print("starting thread right")
             right()
             thread4.start()
