@@ -146,6 +146,7 @@ def mainThread():
        if thread1.isAlive():
           #print("thread is alive, adding time")
           #run the method since the thread that runs the car is started
+          print("thread is alive")
           forward()
        elif not len(threadsArray) > 0:
           #print("starting thread forward")
