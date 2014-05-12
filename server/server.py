@@ -35,6 +35,8 @@ while True:
        elif switch == "reset":
             c.sendall("ok")
             carCon.reset();
+       elif switch == "exit":
+            exit
        else:
             c.sendall('Error')  #returns "Error" if the command DON'T exists
 
