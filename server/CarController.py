@@ -188,11 +188,11 @@ def mainThread():
         for t in threadsArray:
             t.join()
             if threadsArray > 1:
-                break
                 threadsArray = []
+                break
         #print "Exiting Main Thread"
-        break
         threadsArray = []
+        break
 
 def runCar(delayTime,direction):
    #print("starting car controller")
