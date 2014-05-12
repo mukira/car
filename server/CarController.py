@@ -115,6 +115,7 @@ def runCarLeft():
         leftGlo -= delayTimeGlo
     turnOffPins()
 def runCarRight():
+    print("turning car right")
     global delayTimeGlo
     global rightGlo
     GPIO.output(turnRightOne,GPIO.HIGH)
@@ -170,6 +171,7 @@ def mainThread():
         if thread4.isAlive():
             right()
         elif not threadsArray > 1:
+            print("starting thread right")
             right()
             thread4.start()
             threadsArray.append(thread4)
