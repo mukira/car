@@ -19,8 +19,6 @@ turnLeftOne = 24
 turnLeftTwo = 24
 turnRightOne = 19
 turnRightTwo = 21
-#turnHeadlightFront = 0
-#turnHeadlightBack = 0
 # Alternatively use GPIO.BOARD to use board pin numbering
 #GPIO.setmode(GPIO.BCM)
 GPIO.setmode(GPIO.BOARD)
@@ -30,8 +28,7 @@ GPIO.setup(turnLeftOne, GPIO.OUT)
 GPIO.setup(turnLeftTwo, GPIO.OUT)
 GPIO.setup(turnRightOne, GPIO.OUT)
 GPIO.setup(turnRightTwo, GPIO.OUT)
-#GPIO.setup(turnHeadlightFront, GPIO.OUT)
-#GPIO.setup(turnHeadlightBack, GPIO.OUT)
+
 #keep track of all the threads
 threadsArray = []
 class startChildThread (threading.Thread):
@@ -73,8 +70,6 @@ def turnOffPins():
     GPIO.output(turnLeftTwo,False)
     GPIO.output(turnRightOne,False)
     GPIO.output(turnRightTwo,False)
-    #GPIO.output(turnHeadlightFront,False)
-    #GPIO.output(turnHeadlightBack,False)
 
 def reset():
    print("resetting pins")
@@ -142,17 +137,14 @@ def mainThread():
     thread2 = startChildThread(2, "back")
     thread3 = startChildThread(3, "left")
     thread4 = startChildThread(4, "right")
-    #print("mainthread direction;",directionGlo )
     print("threads array; " , len(threadsArray))
     if directionGlo == "forward":
        print("direction forward")
        if thread1.isAlive():
-          #print("thread is alive, adding time")
           #run the method since the thread that runs the car is started
           print("thread is alive")
           forward()
        elif not len(threadsArray) > 0:
-          #print("starting thread forward")
           #adding the time to make it run
           forward()
           #start the thread
@@ -178,7 +170,6 @@ def mainThread():
         if thread4.isAlive():
             right()
         elif not len(threadsArray) > 1:
-            #print("starting thread right")
             right()
             thread4.start()
             threadsArray.append(thread4)
@@ -189,12 +180,10 @@ def mainThread():
             if threadsArray > 1:
                 threadsArray = []
                 break
-        #print "Exiting Main Thread"
         threadsArray = []
         break
 
 def runCar(delayTime,direction):
-   #print("starting car controller")
    global directionGlo
    global delayTimeGlo
    

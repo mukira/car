@@ -1,5 +1,6 @@
 # Echo server program
 import socket
+from sys import exit
 import CarController as carCon
 #global variables
 delayTime = 1 #the delay between the packages for making the car move
@@ -36,7 +37,8 @@ while True:
             c.sendall("ok")
             carCon.reset();
        elif switch == "exit":
-            exit
+            c.sendall("exiting the server")
+            exit(0)
        else:
             c.sendall('Error')  #returns "Error" if the command DON'T exists
 
