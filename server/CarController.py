@@ -76,10 +76,18 @@ def turnOffPins():
 def reset():
    print("resetting pins")
    turnOffPins()
+   
+   global forwardGlo
+   global  backGlo
+   global  leftGlo
+   global  rightGlo
+   global threadsArray
+
    forwardGlo = 0
    backGlo = 0
    leftGlo = 0
    rightGlo = 0
+   threadsArray = []
     
 def runCarForward():
     print("starting runCarForward")
@@ -87,7 +95,6 @@ def runCarForward():
     global forwardGlo
     #Turn on the GPIO pin
     GPIO.output(turnForward,GPIO.HIGH)
-    print("fowardGlo; " , forwardGlo)
     while forwardGlo > 0:
         time.sleep(delayTimeGlo)
         forwardGlo -= delayTimeGlo
@@ -115,7 +122,6 @@ def runCarLeft():
         leftGlo -= delayTimeGlo
     turnOffPins()
 def runCarRight():
-    print("turning car right")
     global delayTimeGlo
     global rightGlo
     GPIO.output(turnRightOne,GPIO.HIGH)
@@ -132,16 +138,16 @@ def mainThread():
     thread2 = startChildThread(2, "back")
     thread3 = startChildThread(3, "left")
     thread4 = startChildThread(4, "right")
-    print("mainthread direction;",directionGlo )
-   
+    #print("mainthread direction;",directionGlo )
+    print("threads array; " , len(threadsArray))
     if directionGlo == "forward":
        print("direction forward")
        if thread1.isAlive():
-          print("thread is alive, adding time")
+          #print("thread is alive, adding time")
           #run the method since the thread that runs the car is started
           forward()
        elif not len(threadsArray) > 1:
-          print("starting thread forward")
+          #print("starting thread forward")
           #adding the time to make it run
           forward()
           #start the thread
@@ -187,15 +193,12 @@ def mainThread():
     
 
 def runCar(delayTime,direction):
-   print("starting car controller")
+   #print("starting car controller")
    global directionGlo
    global delayTimeGlo
    
    directionGlo = direction
    delayTimeGlo = delayTime
-   print("direction; " + directionGlo)
-
-   print("delayTime; " , delayTimeGlo)
 
    mainThreadV = Thread(target=mainThread , args=())
    mainThreadV.start()
