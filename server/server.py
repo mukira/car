@@ -33,8 +33,8 @@ while True:
             c.sendall('ok')     #returns "ok" if the command exists
             carCon.runCar(delayTime,"left")
        elif switch == "reset":
-          c.sendall("ok")
-          carCon.reset();
+            c.sendall("ok")
+            carCon.reset();
        else:
             c.sendall('Error')  #returns "Error" if the command DON'T exists
 
