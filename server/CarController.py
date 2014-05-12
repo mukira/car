@@ -16,7 +16,7 @@ GPIO.setwarnings(False)
 #setting the GPIO pins variables
 turnForward = 23
 turnLeftOne = 24
-turnLeftTwo = 24
+turnLeftTwo = 26
 turnRightOne = 19
 turnRightTwo = 21
 # Alternatively use GPIO.BOARD to use board pin numbering
