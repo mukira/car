@@ -42,11 +42,11 @@ class startChildThread (threading.Thread):
     def run(self):
         if self.name == "forward":
             #add the time to make it run
-            forward()
+            #forward()
             #start the method that runs the car
-            runCarForward()
+            #runCarForward()
         elif self.name == "back":
-            runCarBackwards()
+            #runCarBackwards()
 
 def forward():
     global forwardGlo
@@ -142,6 +142,8 @@ def mainThread():
           forward()
        else:
           print("starting thread forward")
+          #adding the time to make it run
+          forward()
           #start the thread
           thread1.start()
           #add them to the array to keep track of them
@@ -151,6 +153,7 @@ def mainThread():
         if thread2.isAlive():
             back()
         elif not threadsArray > 1:
+            back()
             thread2.start()
             threadsArray.append(thread2)
             runCarBackwards()
@@ -158,6 +161,7 @@ def mainThread():
         if thread3.isAlive():
             left()
         elif not threadsArray > 1:
+            left()
             thread3.start()
             threadsArray.append(thread3)
             runCarLeft()
@@ -165,6 +169,7 @@ def mainThread():
         if thread4.isAlive():
             right()
         elif not threadsArray > 1:
+            right()
             thread4.start()
             threadsArray.append(thread4)
             runCarRight()
