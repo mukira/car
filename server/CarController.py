@@ -40,12 +40,12 @@ class startChildThread (threading.Thread):
         self.threadID = threadID
         self.name = name
     def run(self):
-        if self.name == "forward":
+        #if self.name == "forward":
             #add the time to make it run
             #forward()
             #start the method that runs the car
             #runCarForward()
-        elif self.name == "back":
+        #elif self.name == "back":
             #runCarBackwards()
 
 def forward():
