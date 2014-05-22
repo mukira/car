@@ -39,12 +39,12 @@ class PyWSock:
             masked_data = data[6:(6+datalen)]
             unmasked_data = [masked_data[i] ^ mask_key[i%4] for i in range(len(masked_data))]
             str_data = str(bytearray(unmasked_data))
-            print (str_data)
+            #print (str_data)
         return str_data
 
     def broadcast_resp(self, data):
         # 1st byte: fin bit set. text frame bits set.
-        # 2nd byte: no mask. length set in 1 byte. 
+        # 2nd byte: no mask. length set in 1 byte.
         resp = bytearray([0b10000001, len(data)])
         # append the data bytes
         for d in bytearray(data):
@@ -87,30 +87,29 @@ class PyWSock:
             while 1:
                 delayTime = 1 #the delay between the packages for making the car move
                 data = self.recv_data(client)
-                print("received [%s]" % (data,))
+                #print("received [%s]" % (data,))
                 self.broadcast_resp(data)
                 switch = data
-                print (switch)
+                #print (switch)
                 if switch == "forward":
-                 print("Forward command received")
-                 #code here so motors go forward
-                 carCon.runCar(delayTime,"forward")
+                  print("Forward command received")
+                  #code here so motors go forward
+                  carCon.runCar(delayTime,"forward")
                 elif switch == "back":
-                 print("Backward command received")
-                 #code here so motors go backward
-                 carCon.runCar(delayTime,"back")
+                  print("Backward command received")
+                  #code here so motors go backward
+                  carCon.runCar(delayTime,"back")
                 elif switch == "right":
-                 print("Right command received")
-                 #code here so motors go right
-                 carCon.runCar(delayTime,"right")
+                  print("Right command received")
+                  #code here so motors go right
+                  carCon.runCar(delayTime,"right")
                 elif switch == "left":
-                 print("Left command received")
-                 #code here so motors go  left
-                 carCon.runCar(delayTime,"left")
+                  print("Left command received")
+                  #code here so motors go  left
+                  carCon.runCar(delayTime,"left")
                 elif switch == "stop":
-                 print("stop command received")
-                 #code here so motors go stop
-                 carCon.runCar(delayTime,"stop")
+                  print("Stop command received")
+                  carCon.reset();
                 else:
                  client.send('Error')  #returns "Error" if the command DON'T exists
 
