@@ -19,6 +19,8 @@ turnLeftOne = 24
 turnLeftTwo = 26
 turnRightOne = 19
 turnRightTwo = 21
+sonarTrigger =
+sonarEcho =
 # Alternatively use GPIO.BOARD to use board pin numbering
 #GPIO.setmode(GPIO.BCM)
 GPIO.setmode(GPIO.BOARD)
@@ -28,7 +30,10 @@ GPIO.setup(turnLeftOne, GPIO.OUT)
 GPIO.setup(turnLeftTwo, GPIO.OUT)
 GPIO.setup(turnRightOne, GPIO.OUT)
 GPIO.setup(turnRightTwo, GPIO.OUT)
-
+GPIO.setup(sonarTrigger, GPIO.OUT)
+GPIO.setup(sonarEcho, GPIO.IN)
+#make sure trigger isn't on
+GPIO.output(sonarTrigger, False)
 #keep track of all the threads
 threadsArray = []
 class startChildThread (threading.Thread):
@@ -47,6 +52,8 @@ class startChildThread (threading.Thread):
             runCarRight()
         elif self.name == "left":
             runCarLeft()
+        elif self.name == "sonar":
+            startSonar()
 def forward():
     global forwardGlo
     global delayTimeGlo
@@ -74,7 +81,7 @@ def turnOffPins():
 def reset():
    print("resetting pins")
    turnOffPins()
-   
+
    global forwardGlo
    global  backGlo
    global  leftGlo
@@ -86,7 +93,7 @@ def reset():
    leftGlo = 0
    rightGlo = 0
    threadsArray = []
-    
+
 def runCarForward():
     print("starting runCarForward")
     global delayTimeGlo
@@ -108,7 +115,7 @@ def runCarBackwards():
     while backGlo > 0:
         time.sleep(delayTimeGlo)
         backGlo -= delayTimeGlo
-    turnOffPins() 
+    turnOffPins()
 def runCarLeft():
     global delayTimeGlo
     global leftGlo
@@ -129,6 +136,33 @@ def runCarRight():
         time.sleep(delayTimeGlo)
         rightGlo -= delayTimeGlo
     turnOffPins()
+def startSonar():
+  # ultrasonic module needs a moment to settle in
+  time.sleep(0.5)
+  while True:
+    GPIO.output(GPIO_TRIGGER, True)
+    time.sleep(0.00001)
+    GPIO.output(GPIO_TRIGGER, False)
+    sent = time.time()
+    while GPIO.input(GPIO_ECHO)==0:
+      sent = time.time()
+
+    while GPIO.input(GPIO_ECHO)==1:
+      returned = time.time()
+    #Calculate time
+  elapsed = returned-sent
+  distance = elapsed * 34300 / 2
+  print "Distance is : %.1f" % distance
+
+  if distance < 10:
+    reset()
+    global directionGlo
+    global backGlo
+    directionGlo = "back"
+    backGlo = 0.5
+    runCarBackwards()
+    reset()
+
 def mainThread():
     global directionGlo
     global threadsArray
@@ -137,7 +171,10 @@ def mainThread():
     thread2 = startChildThread(2, "back")
     thread3 = startChildThread(3, "left")
     thread4 = startChildThread(4, "right")
+    thread5 = startChildThread(5. "sonar")
     print("threads array; " , len(threadsArray))
+    if not thread.isAlive():
+        thread5.start()
     if directionGlo == "forward":
        print("direction forward")
        if thread1.isAlive():
@@ -186,9 +223,12 @@ def mainThread():
 def runCar(delayTime,direction):
    global directionGlo
    global delayTimeGlo
-   
+
    directionGlo = direction
    delayTimeGlo = delayTime
 
    mainThreadV = Thread(target=mainThread , args=())
-   mainThreadV.start()
+   if mainThreadV.isAlive():
+       mainThreadV.join()
+   else:
+       mainThreadV.start()

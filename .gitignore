@@ -12,3 +12,5 @@ serverC/socket
 *.py~
 
 *.pyc
+
+server/.#CarController.py
