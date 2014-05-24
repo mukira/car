@@ -11,6 +11,7 @@ leftGlo = 0
 rightGlo = 0
 delayTimeGlo = 0
 directionGlo = None
+sonarGlo = 0
 #Ignores any warning
 GPIO.setwarnings(False)
 #setting the GPIO pins variables
@@ -137,6 +138,7 @@ def runCarRight():
         rightGlo -= delayTimeGlo
     turnOffPins()
 def startSonar():
+  global sonarGlo
   # ultrasonic module needs a moment to settle in
   time.sleep(0.5)
   while True:
@@ -152,6 +154,7 @@ def startSonar():
     #Calculate time
   elapsed = returned-sent
   distance = elapsed * 34300 / 2
+  sonarGlo = distance
   print "Distance is : %.1f" % distance
 
   if distance < 10:
@@ -162,6 +165,9 @@ def startSonar():
     backGlo = 0.5
     runCarBackwards()
     reset()
+
+def sonarReturn():
+  return sonarGlo
 
 def mainThread():
     global directionGlo

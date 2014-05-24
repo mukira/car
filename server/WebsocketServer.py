@@ -109,9 +109,12 @@ class PyWSock:
                   carCon.runCar(delayTime,"left")
                 elif switch == "stop":
                   print("Stop command received")
-                  carCon.reset();
+                  carCon.reset()
+                elif switch == "GetSonar":
+                  print("GetSonar command received")
+                  client.send(carCon.sonarReturn())
                 else:
-                 client.send('Error')  #returns "Error" if the command DON'T exists
+                  client.send('Error')  #returns "Error" if the command DON'T exists
 
         except Exception as e:
             print("Exception %s" % (str(e)))
