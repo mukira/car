@@ -1,0 +1,14 @@
+set up temperature sensor
+
+enable hardware spi
+
+sudo nano /etc/modprobe.d/raspi-blacklist.conf
+
+Add a ‘#’ character in front of the line spi-bcm2708
+
+sudo apt-get install python2.7-dev
+mkdir py-spidev
+cd py-spidev
+wget https://raw.github.com/doceme/py-spidev/master/setup.py
+wget https://raw.github.com/doceme/py-spidev/master/spidev_module.c
+sudo python setup.py install
