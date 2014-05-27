@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
-#--------------------------------------   
+#--------------------------------------
 # BWC    - Temperature sensor
 # Author - Kasper Wilkosz
 # a temperature sensor using a pt100 thermocouple (-50 to 550 degrees celcius range)
-# with an MCP3008 converting the analog voltage reading into a digital reading on 
+# with an MCP3008 converting the analog voltage reading into a digital reading on
 # the raspberry pi
 # 470 ohm resistor for calibration of temperature readings
 #--------------------------------------
@@ -25,7 +25,7 @@ def ReadChannel(channel):
   return data
 
 # Function to convert data to voltage level,
-# rounded to specified number of decimal places. 
+# rounded to specified number of decimal places.
 def ConvertVolts(data,places):
   volts = (data * 3.3) / float(1023)
   volts = round(volts,places)
@@ -70,4 +70,4 @@ while True:
   print("Temp  : {}V {}C".format(temp_volts,temp))
 
   # Wait before repeating loop
-  time.sleep(delay
+  time.sleep(delay)

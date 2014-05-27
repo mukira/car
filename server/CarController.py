@@ -20,8 +20,8 @@ turnLeftOne = 24
 turnLeftTwo = 26
 turnRightOne = 19
 turnRightTwo = 21
-sonarTrigger =
-sonarEcho =
+sonarTrigger = 11
+sonarEcho = 13
 # Alternatively use GPIO.BOARD to use board pin numbering
 #GPIO.setmode(GPIO.BCM)
 GPIO.setmode(GPIO.BOARD)
@@ -142,14 +142,14 @@ def startSonar():
   # ultrasonic module needs a moment to settle in
   time.sleep(0.5)
   while True:
-    GPIO.output(GPIO_TRIGGER, True)
+    GPIO.output(sonarTrigger, True)
     time.sleep(0.00001)
-    GPIO.output(GPIO_TRIGGER, False)
+    GPIO.output(sonarEcho, False)
     sent = time.time()
-    while GPIO.input(GPIO_ECHO)==0:
+    while GPIO.input(sonarTrigger)==0:
       sent = time.time()
 
-    while GPIO.input(GPIO_ECHO)==1:
+    while GPIO.input(sonarTrigger)==1:
       returned = time.time()
     #Calculate time
   elapsed = returned-sent
@@ -177,10 +177,10 @@ def mainThread():
     thread2 = startChildThread(2, "back")
     thread3 = startChildThread(3, "left")
     thread4 = startChildThread(4, "right")
-    thread5 = startChildThread(5. "sonar")
+    thread5 = startChildThread(5, "sonar")
     print("threads array; " , len(threadsArray))
-    if not thread.isAlive():
-        thread5.start()
+    #if not thread5.isAlive():
+        #thread5.start()
     if directionGlo == "forward":
        print("direction forward")
        if thread1.isAlive():
@@ -234,7 +234,7 @@ def runCar(delayTime,direction):
    delayTimeGlo = delayTime
 
    mainThreadV = Thread(target=mainThread , args=())
-   if mainThreadV.isAlive():
-       mainThreadV.join()
-   else:
-       mainThreadV.start()
+   #if mainThreadV.isAlive():
+      #mainThreadV.join()
+   #else:
+   mainThreadV.start()
