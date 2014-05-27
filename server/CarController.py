@@ -20,8 +20,8 @@ turnLeftOne = 24
 turnLeftTwo = 26
 turnRightOne = 19
 turnRightTwo = 21
-sonarTrigger = 11
-sonarEcho = 13
+sonarTrigger = 18
+sonarEcho = 22
 # Alternatively use GPIO.BOARD to use board pin numbering
 #GPIO.setmode(GPIO.BCM)
 GPIO.setmode(GPIO.BOARD)
@@ -138,33 +138,34 @@ def runCarRight():
         rightGlo -= delayTimeGlo
     turnOffPins()
 def startSonar():
-  global sonarGlo
-  # ultrasonic module needs a moment to settle in
-  time.sleep(0.5)
-  while True:
-    GPIO.output(sonarTrigger, True)
-    time.sleep(0.00001)
-    GPIO.output(sonarEcho, False)
-    sent = time.time()
-    while GPIO.input(sonarTrigger)==0:
+    print("starting sonar")
+    global sonarGlo
+    # ultrasonic module needs a moment to settle in
+    time.sleep(0.5)
+    while True:
+      GPIO.output(sonarTrigger, True)
+      time.sleep(0.00001)
+      GPIO.output(sonarEcho, False)
       sent = time.time()
+      while GPIO.input(sonarTrigger)==0:
+        sent = time.time()
 
-    while GPIO.input(sonarTrigger)==1:
-      returned = time.time()
+      while GPIO.input(sonarTrigger)==1:
+        returned = time.time()
     #Calculate time
-  elapsed = returned-sent
-  distance = elapsed * 34300 / 2
-  sonarGlo = distance
-  print "Distance is : %.1f" % distance
+    elapsed = returned-sent
+    distance = elapsed * 34300 / 2
+    sonarGlo = distance
+    print "Distance is : %.1f" % distance
 
-  if distance < 10:
-    reset()
-    global directionGlo
-    global backGlo
-    directionGlo = "back"
-    backGlo = 0.5
-    runCarBackwards()
-    reset()
+    if distance < 10:
+      reset()
+      global directionGlo
+      global backGlo
+      directionGlo = "back"
+      backGlo = 0.5
+      runCarBackwards()
+      reset()
 
 def sonarReturn():
   return sonarGlo
@@ -179,8 +180,8 @@ def mainThread():
     thread4 = startChildThread(4, "right")
     thread5 = startChildThread(5, "sonar")
     print("threads array; " , len(threadsArray))
-    #if not thread5.isAlive():
-        #thread5.start()
+    if not thread5.isAlive():
+        thread5.start()
     if directionGlo == "forward":
        print("direction forward")
        if thread1.isAlive():

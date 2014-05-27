@@ -3,7 +3,7 @@ import socket
 import time
 from datetime import datetime
 
-HOST = "10.0.1.8"    # The remote host
+HOST = "192.168.2.4"    # The remote host
 PORT = 50007              # The same port as used by the server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
